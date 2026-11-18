@@ -55,12 +55,16 @@ export function QueryVariableEditor({ variable, onRunQuery }: QueryVariableEdito
 
   const onRegExChange = (event: React.FormEvent<HTMLTextAreaElement>) => {
     variable.setState({ regex: event.currentTarget.value });
+    // the regex filters the options, so re-run to update the preview
+    onRunQuery();
   };
   const onRegexApplyToChange = (event: VariableRegexApplyTo) => {
     variable.setState({ regexApplyTo: event });
+    onRunQuery();
   };
   const onSortChange = (sort: SelectableValue<VariableSort>) => {
     variable.setState({ sort: sort.value });
+    onRunQuery();
   };
   const onRefreshChange = (refresh: VariableRefresh) => {
     variable.setState({ refresh: refresh });
